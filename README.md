@@ -4,7 +4,7 @@
 ---------------------------------
 To get started, connect the header file.
 ```php
-#include <sampvoice>
+#include <KeyListener>
 ```
 Simple example
 ```php
