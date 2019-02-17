@@ -1,0 +1,8 @@
+﻿LIBRARY KeyListener
+VERSION 1.0
+EXPORTS
+	Supports
+	Load
+	Unload
+	AmxLoad
+	AmxUnload

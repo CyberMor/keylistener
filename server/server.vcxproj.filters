@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\aux">
+      <UniqueIdentifier>{3fc12232-84f4-470a-a511-ab6814b2fb66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\sdk">
+      <UniqueIdentifier>{8ec7111d-3ae0-4a31-b9ae-979fbe9610be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\sdk\pawn">
+      <UniqueIdentifier>{f6f22614-010a-4f4f-9876-6aaa46ecb85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\sdk\pawn\amx">
+      <UniqueIdentifier>{c0476e47-4ff4-43d2-8645-4a31a6186196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\sdk\raknet">
+      <UniqueIdentifier>{523093c3-c2da-4525-b103-315b8fcc15fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile">
+      <Filter>Исходные файлы\aux</Filter>
+    </None>
+    <None Include="plugin.def">
+      <Filter>Исходные файлы\aux</Filter>
+    </None>
+    <None Include="KeyListener.inc">
+      <Filter>Исходные файлы\aux</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\raknet\bitstream.cpp">
+      <Filter>Исходные файлы\sdk\raknet</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\pawn\amxplugin.cpp">
+      <Filter>Исходные файлы\sdk\pawn</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mem.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="net.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="pwn.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\raknet\bitstream.h">
+      <Filter>Исходные файлы\sdk\raknet</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\raknet\networktypes.h">
+      <Filter>Исходные файлы\sdk\raknet</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\pawn\plugincommon.h">
+      <Filter>Исходные файлы\sdk\pawn</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\pawn\amx\amx.h">
+      <Filter>Исходные файлы\sdk\pawn\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\pawn\amx\getch.h">
+      <Filter>Исходные файлы\sdk\pawn\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\pawn\amx\sclinux.h">
+      <Filter>Исходные файлы\sdk\pawn\amx</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
