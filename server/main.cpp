@@ -1,46 +1,104 @@
-﻿#include <pawn/amx/amx.h>
-#include <pawn/plugincommon.h>
+﻿/*
+    This is a KeyListener project file
+    Developer: CyberMor <cyber.mor.2020@gmail.com>
 
-#include <raknet/bitstream.h>
-#include <raknet/networktypes.h>
+    See more here https://github.com/CyberMor/keylistener
 
-typedef void(*logprintf_t)(const char* format, ...);
-logprintf_t logprintf;
+    Copyright (c) Daniel (CyberMor) 2020 All rights reserved
+*/
 
-extern void *pAMXFunctions;
-void **ppPluginData;
+#include <version.hpp>
 
-#include "main.h"
+#include "pawn.hpp"
+#include "network.hpp"
 
-#include "mem.hpp"
-#include "pwn.h"
-#include "net.h"
+constexpr Version kCurrentVersion = MakeVersion(1, 1, 0);
 
-PLUGIN_EXPORT bool PLUGIN_CALL Load(
-	void **ppData
-) {
-	
-	ppPluginData = ppData;
-	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
-	logprintf = (logprintf_t)(ppData[PLUGIN_DATA_LOGPRINTF]);
+constexpr ubyte_t kPacketKeyDown = 244;
+constexpr ubyte_t kPacketKeyUp   = 245;
 
-	if (!net::init(ppData[PLUGIN_DATA_LOGPRINTF])) {
-		logprintf("[KeyListener] : could not initialize net module");
-		return false;
-	}
+extern ptr_t pAMXFunctions;
 
-	logprintf("KeyListener plugin v" KL_VERSION_TEXT " by MOR loaded");
-	return true;
+static bool gKeys[1024][256] = {};
 
+static bool OnPacket(const uword_t player, const cptr_t data, const uint_t size) noexcept
+{
+    if (size == 0) return false;
+
+    const ubyte_t packet = static_cast<cadr_t>(data)[0];
+
+    if (packet != kPacketKeyDown && packet != kPacketKeyUp)
+        return false;
+
+    if (size != 2) return false;
+
+    const ubyte_t key = static_cast<cadr_t>(data)[1];
+
+    switch (packet)
+    {
+        case kPacketKeyDown:
+        {
+            if (gKeys[player][key] == false)
+            {
+                OnPlayerKeyDown(player, key);
+                gKeys[player][key] = true;
+            }
+
+            break;
+        }
+        case kPacketKeyUp:
+        {
+            if (gKeys[player][key] == true)
+            {
+                OnPlayerKeyUp(player, key);
+                gKeys[player][key] = false;
+            }
+
+            break;
+        }
+    }
+
+    return true;
 }
-PLUGIN_EXPORT void PLUGIN_CALL Unload() {}
-PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx) {
-	pawn::script::reg(amx);
-	return AMX_ERR_NONE;
+
+PLUGIN_EXPORT bool PLUGIN_CALL Load(void* const* const ppData) noexcept
+{
+    pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
+
+    const auto logprintf = reinterpret_cast<void(*)(cstr_t,...)>(ppData[PLUGIN_DATA_LOGPRINTF]);
+
+    Network::Instance().OnPacket = OnPacket;
+
+    if (!Network::Instance().Initialize(ppData[PLUGIN_DATA_LOGPRINTF]))
+    {
+        logprintf("[KeyListener] : failed to initialize network module");
+        return false;
+    }
+
+    logprintf("KeyListener v%hhu.%hhu.%hu by MOR loaded",
+        GetVersionMajor(kCurrentVersion),
+        GetVersionMinor(kCurrentVersion),
+        GetVersionPatch(kCurrentVersion));
+
+    return true;
 }
-PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx) {
-	return AMX_ERR_NONE;
+
+PLUGIN_EXPORT void PLUGIN_CALL Unload() noexcept
+{}
+
+PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX* const amx) noexcept
+{
+    AmxScript::Register(amx);
+
+    return AMX_ERR_NONE;
 }
-PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports() {
-	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES;
+
+PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX* const) noexcept
+{
+    return AMX_ERR_NONE;
+}
+
+PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports() noexcept
+{
+    return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES;
 }

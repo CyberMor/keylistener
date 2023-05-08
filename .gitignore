@@ -1,8 +1,6 @@
-client/temp/
-server/temp/
-bin/
-setup/files_temporary/
-effects.cpp
+client/build/
+server/build/
+binaries/
 *.lck
 *.rsuser
 *.suo

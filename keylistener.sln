@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{D52583BE-8BB6-47A8-AB5F-09DB8FAB92C3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcxproj", "{5C5C5248-500A-4D61-8B10-8853845C749B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{97D97C77-EAC5-4FB7-B943-FE1F8979F50B}"
+	ProjectSection(SolutionItems) = preProject
+		common\jump_hook.hpp = common\jump_hook.hpp
+		common\patch.hpp = common\patch.hpp
+		common\scanner.hpp = common\scanner.hpp
+		common\types.hpp = common\types.hpp
+		common\unprotect_scope.hpp = common\unprotect_scope.hpp
+		common\version.hpp = common\version.hpp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

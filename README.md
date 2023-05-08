@@ -8,14 +8,16 @@ To get started, connect the header file.
 ```
 Simple example
 ```php
-public void:OnPlayerKeyDown(playerid, keyid) {
+public void:OnPlayerKeyDown(player, key)
+{
 	new buffer[64];
-	format(buffer, sizeof(buffer), "KeyDown: %d", keyid);
-	SendClientMessage(playerid, -1, buffer);
+	format(buffer, sizeof(buffer), "KeyDown: %d", key);
+	SendClientMessage(player, -1, buffer);
 }
-public void:OnPlayerKeyUp(playerid, keyid) {
+public void:OnPlayerKeyUp(player, key)
+{
 	new buffer[64];
-	format(buffer, sizeof(buffer), "KeyUp: %d", keyid);
-	SendClientMessage(playerid, -1, buffer);
+	format(buffer, sizeof(buffer), "KeyUp: %d", key);
+	SendClientMessage(player, -1, buffer);
 }
 ```

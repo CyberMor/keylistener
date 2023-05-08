@@ -1,7 +1,7 @@
-#if defined _kl_included
+#if defined _keylistener_included
 	#endinput
 #endif
-#define _kl_included
+#define _keylistener_included
 
-forward void:OnPlayerKeyDown(playerid, keyid);
-forward void:OnPlayerKeyUp(playerid, keyid);
+forward void:OnPlayerKeyDown(player, key);
+forward void:OnPlayerKeyUp(player, key);
