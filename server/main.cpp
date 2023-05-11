@@ -12,7 +12,7 @@
 #include "pawn.hpp"
 #include "network.hpp"
 
-constexpr Version kCurrentVersion = MakeVersion(1, 1, 0);
+constexpr Version kCurrentVersion = MakeVersion(1, 1, 1);
 
 constexpr ubyte_t kPacketKeyDown = 244;
 constexpr ubyte_t kPacketKeyUp   = 245;
