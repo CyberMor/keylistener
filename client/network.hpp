@@ -68,8 +68,7 @@ public:
 
     bool SendPacket(const adr_t data, const uint_t size) noexcept
     {
-        assert(_rakclientinterface != nullptr);
-        return _rakclientinterface->Send(&BitStream(data, size, false),
+        return _rakclientinterface != nullptr && _rakclientinterface->Send(&BitStream(data, size, false),
             PacketPriority::MEDIUM_PRIORITY, PacketReliability::RELIABLE_ORDERED, 0);
     }
 
